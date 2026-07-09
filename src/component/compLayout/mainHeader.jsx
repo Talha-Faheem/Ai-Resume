@@ -25,6 +25,9 @@ function mainHeader() {
         <button className="hover:text-white">Sign in</button>
         <Button name="Get Started " />
       </div>
+      <div>
+        icon
+      </div>
     </div>
   );
 }
