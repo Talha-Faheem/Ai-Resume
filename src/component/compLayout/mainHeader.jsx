@@ -1,8 +1,10 @@
+import { MdFormatListBulleted } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 import Logo from "../../assets/react.svg";
 import Button from "../Ui/button";
-function mainHeader() {
+function mainHeader({ setMenu, showMenu }) {
   return (
-    <div className="flex bg-blue-900 justify-between px-15 lg:px-20 text-gray-300 h-20  border-gray-500">
+    <div className="flex  bg-blue-900 justify-between px-3 md:px-20 text-gray-300 h-20 fixed top-0 w-full  border-gray-500">
       <div className="flex text-white gap-2 items-center md:w-[25%] ">
         <img className="w-10" src={Logo} alt="Logo" />
         <h2 className="text-2xl font-semibold w-50">Ai Resume</h2>
@@ -25,8 +27,14 @@ function mainHeader() {
         <button className="hover:text-white">Sign in</button>
         <Button name="Get Started " />
       </div>
-      <div>
-        icon
+      <div className="md:hidden flex justify-center items-center">
+        <div onClick={() => setMenu((e)=>!e)}>
+          {showMenu ? (
+            <RxCross2 className="text-white text-3xl" />
+          ) : (
+            <MdFormatListBulleted className="text-white text-3xl" />
+          )}
+        </div>
       </div>
     </div>
   );
