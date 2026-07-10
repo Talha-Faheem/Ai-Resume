@@ -3,6 +3,7 @@ import MainHeader from "../../component/compLayout/mainHeader"
 import MenuList from "../../component/Ui/meun"
 import FeaturePage from "./component/featurePage"
 import MainPage from "./component/mainPage"
+import Process from "./component/process"
 function mainLayout() {
 
   const [showMenu,setShowMenu]=useState(false)
@@ -13,6 +14,7 @@ function mainLayout() {
         {showMenu?<MenuList />:<></>}
         <MainPage/>
         <FeaturePage/>
+        <Process/>
     </div>
   )
 }

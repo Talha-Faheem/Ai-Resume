@@ -31,11 +31,11 @@ function mainPage() {
         </button>
       </div>
       </div>
-      <img className="w-full lg:w-[45%] sm:w-full  h-auto" src={MainImage} alt="" />
+      <img className="w-full lg:w-[45%] sm:w-full max-w-230  h-auto" src={MainImage} alt="" />
     </div>
   );
 }
 
 export default mainPage;
 
-// Beat ATS filters, impress hiring managers, and land 3× more interviews. Our AI tailors every word to your target role.
+
