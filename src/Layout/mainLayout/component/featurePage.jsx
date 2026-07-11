@@ -62,8 +62,8 @@ function featurePage() {
   return (
     <div>
       <div className="bg-blue-900 mt-10  text-center  text-white px-3">
-      <span className=" text-sm font-bold mx-auto items-center flex gap-2 rounded-2xl p justify-center  bg-blue-800 w-22 text-purple-950 border-purple-950 border">
-        <FaGripfire /> <p>Feature</p>{" "}
+      <span className="inline-block px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400">
+        <div className="flex gap-3 items-center"><FaGripfire /> <p>Feature</p>{" "}</div>
       </span>
 
       <h2 className="mt-6 text-4xl font-bold  ">

@@ -4,6 +4,7 @@ import MenuList from "../../component/Ui/meun"
 import FeaturePage from "./component/featurePage"
 import MainPage from "./component/mainPage"
 import Process from "./component/process"
+import Template from "./component/Template"
 function mainLayout() {
 
   const [showMenu,setShowMenu]=useState(false)
@@ -15,6 +16,7 @@ function mainLayout() {
         <MainPage/>
         <FeaturePage/>
         <Process/>
+        <Template/>
     </div>
   )
 }

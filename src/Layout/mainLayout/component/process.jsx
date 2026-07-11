@@ -34,9 +34,12 @@ const steps = [
 function process() {
   return (
 
-    <div className="mt-20">
-        <span className=" text-sm font-bold mx-auto items-center flex gap-2 rounded-2xl p justify-center  bg-blue-800 w-22 text-purple-950 border-purple-950 border">
-                < LuCpu/> <p>Process</p>{" "}
+    <div className="mt-20 w-full  text-center">
+        <span className=" inline-block px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400">
+                <div className="flex gap-3 items-center">
+                    < LuCpu/> <p>Process</p>{" "}
+                </div>
+
               </span>
               <h2 className="mt-6 text-4xl font-bold  text-white text-center">
                 From zero to interview in 4 steps

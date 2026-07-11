@@ -3,7 +3,6 @@ import { RxCross2 } from "react-icons/rx";
 import Logo from "../../assets/react.svg";
 import Button from "../Ui/button";
 function mainHeader({ setMenu, showMenu }) {
-
   return (
     <div  className=" flex z-100  bg-blue-900 justify-between px-3 md:px-20 text-gray-300 h-20 fixed top-0 w-full  border-gray-500">
       <div className="flex text-white gap-2 items-center md:w-[25%] ">
