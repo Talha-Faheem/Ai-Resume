@@ -90,7 +90,7 @@ function Template() {
 
         </div>
 
-        {/* Categories */}
+     
 
         <div className="flex justify-center flex-wrap gap-4 mt-10">
 
@@ -109,9 +109,8 @@ function Template() {
 
         </div>
 
-        {/* Cards */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mt-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mt-16">
 
           {templates.map((item) => (
 
@@ -135,15 +134,15 @@ function Template() {
 
               <div className="p-5">
 
-                <h3 className="text-white font-semibold text-xl">
+                <h3 className="text-white font-semibold text-lg md:text-xl">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-400 mt-1">
+                <p className="text-gray-400 text-sm md:text-md mt-1">
                   {item.category}
                 </p>
 
-                <div className="flex justify-between mt-4 text-sm">
+                <div className="flex justify-between mt-4 text-xs md:text-sm">
 
                   <span className="text-gray-500">
                     {item.uses}
@@ -163,7 +162,7 @@ function Template() {
 
         </div>
 
-        {/* Button */}
+       
 
         <div className="flex justify-center mt-16">
 
