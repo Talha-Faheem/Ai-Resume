@@ -1,7 +1,7 @@
 import { GoStarFill } from "react-icons/go";
 function Testimonials() {
   return (
-    <div className="text-center mx-3 md:mx-20">
+    <div className="text-center mx-3 md:mx-20 py-3">
       <span className="inline-block px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400">
         <div className="flex items-center  gap-3">
           <p>Testimonials</p>
@@ -11,7 +11,7 @@ function Testimonials() {
         Loved by 50,000+ job seekers
       </h2>
 
-      <div className="mt-20 flex justify-center">
+      <div className="mt-20 flex gap-4 items-center flex-col">
         <div className="max-w-220 bg-white/20  rounded-3xl p-5 md:p-10">
           <div className="flex justify-start items-start gap-6">
             <span className="p-3 px-4.5 rounded-[50%] bg-green-400 text-white font-semibold">
@@ -40,6 +40,13 @@ function Testimonials() {
               unreal."
             </p>
           </div>
+        </div>
+
+        <div className="flex gap-3">
+          <div className="bg-white/40 rounded-full w-2 h-2"></div>
+          <div className="bg-white/20 rounded-full w-2 h-2"></div>
+          <div className="bg-white/20 rounded-full w-2 h-2"></div>
+          <div className="bg-white/20 rounded-full w-2 h-2"></div>
         </div>
       </div>
     </div>

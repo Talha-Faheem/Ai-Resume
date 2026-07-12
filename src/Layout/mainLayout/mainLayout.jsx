@@ -3,6 +3,7 @@ import MainHeader from "../../component/compLayout/mainHeader"
 import MenuList from "../../component/Ui/meun"
 import FeaturePage from "./component/featurePage"
 import MainPage from "./component/mainPage"
+import Price from "./component/price"
 import Process from "./component/process"
 import Template from "./component/Template"
 import Testimonials from "./component/Testimonials"
@@ -19,6 +20,7 @@ function mainLayout() {
         <Process/>
         <Template/>
         <Testimonials/>
+        <Price/>
     </div>
   )
 }
