@@ -4,7 +4,7 @@ import { IoPlayOutline } from "react-icons/io5";
 import MainImage from "../../../assets/image.png";
 function mainPage() {
   return (
-    <div className="bg-blue-900 px-3 mt-20 pt-5 md:px-20 h-full flex my-5 justify-between flex-col lg:flex-row ">
+    <div className="px-3 mt-20 pt-5 md:px-20 h-full flex my-5 justify-between flex-col lg:flex-row ">
       <div className="flex flex-col gap-5 lg:w-[45%] sm:w-full ">
         <div className="inline-block px-4 py-2 rounded-full border w-80 border-violet-500/30 bg-violet-500/10 text-violet-400">
         <div className="flex gap-3 items-center ">

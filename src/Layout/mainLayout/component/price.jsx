@@ -14,7 +14,7 @@ function price() {
             %</span></span>
       </div>
       <div className="flex gap-3 justify-center mt-15">
-        <div className="p-8 rounded-2xl bg-white/20 text-white w-95">
+        <div className="p-8 rounded-2xl bg-white/10 text-white w-95">
           <div className="flex flex-col items-start">
             <h3 className="text-2xl font-semibold">Free</h3>
             <div className="flex gap-3 items-end ">
@@ -51,7 +51,7 @@ function price() {
             </button>
           </div>
         </div>
-        <div className="p-8 rounded-2xl bg-white/20 text-white w-95 relative">
+        <div className="p-8 rounded-2xl bg-white/10 text-white w-95 relative">
           <div className="flex flex-col items-start">
             <h3 className="text-2xl font-semibold">Pro</h3>
             <div className="flex gap-3 items-end ">
@@ -71,13 +71,13 @@ function price() {
               <li>3 PDF Exports / month</li>
               <li>ATS Score Check</li>
               <li>
-                <s>Cover Letter Generator</s>
+                <>Cover Letter Generator</>
               </li>
               <li>
-                <s>Version History</s>
+                <>Version History</>
               </li>
               <li>
-                <s>Priority Support</s>
+                <>Priority Support</>
               </li>
             </ul>
           </div>
@@ -88,7 +88,7 @@ function price() {
             </button>
           </div>
             <p className="text-xs text-gray-300 mt-2">No credit card required · Cancel anytime</p>
-            <div className="w-30 font-bold py-1 flex items-center justify-center absolute top-[-12px] right-37 text-sm rounded-full bg-purple-500 shadow-3xl shadow-white ">
+            <div className="w-25 font-semibold py-1 flex items-center justify-center absolute top-[-12px] right-37 text-xs rounded-full bg-purple-500 shadow-3xl shadow-white ">
                 <p>most popular</p>
             </div>
         </div>

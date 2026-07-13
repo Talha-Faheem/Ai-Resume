@@ -12,7 +12,7 @@ function Testimonials() {
       </h2>
 
       <div className="mt-20 flex gap-4 items-center flex-col">
-        <div className="max-w-220 bg-white/20  rounded-3xl p-5 md:p-10">
+        <div className="max-w-220 bg-white/10  rounded-3xl p-5 md:p-10">
           <div className="flex justify-start items-start gap-6">
             <span className="p-3 px-4.5 rounded-[50%] bg-green-400 text-white font-semibold">
               A
@@ -43,10 +43,10 @@ function Testimonials() {
         </div>
 
         <div className="flex gap-3">
-          <div className="bg-white/40 rounded-full w-2 h-2"></div>
           <div className="bg-white/20 rounded-full w-2 h-2"></div>
-          <div className="bg-white/20 rounded-full w-2 h-2"></div>
-          <div className="bg-white/20 rounded-full w-2 h-2"></div>
+          <div className="bg-white/10 rounded-full w-2 h-2"></div>
+          <div className="bg-white/10 rounded-full w-2 h-2"></div>
+          <div className="bg-white/10 rounded-full w-2 h-2"></div>
         </div>
       </div>
     </div>
