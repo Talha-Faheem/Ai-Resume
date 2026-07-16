@@ -1,11 +1,11 @@
 import {
-    FaGithub,
-    FaLinkedin,
-    FaXTwitter,
+  FaGithub,
+  FaLinkedin,
+  FaXTwitter,
 } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { RiSparkling2Fill } from "react-icons/ri";
-
+import Link from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="text-white">
@@ -111,11 +111,11 @@ export default function Footer() {
             </h3>
 
             <ul className="mt-6 space-y-4 text-gray-400">
-              <li><a href="#" className="hover:text-white">Features</a></li>
-              <li><a href="#" className="hover:text-white">Resume Builder</a></li>
-              <li><a href="#" className="hover:text-white">ATS Checker</a></li>
-              <li><a href="#" className="hover:text-white">Templates</a></li>
-              <li><a href="#" className="hover:text-white">Pricing</a></li>
+              <li><Link to="#" className="hover:text-white">Features</Link></li>
+              <li><Link to="#" className="hover:text-white">Resume Builder</Link></li>
+              <li><Link to="#" className="hover:text-white">ATS Checker</Link></li>
+              <li><Link to="#" className="hover:text-white">Templates</Link></li>
+              <li><Link to="#" className="hover:text-white">Pricing</Link></li>
             </ul>
           </div>
 
@@ -127,11 +127,11 @@ export default function Footer() {
             </h3>
 
             <ul className="mt-6 space-y-4 text-gray-400">
-              <li><a href="#" className="hover:text-white">Resume Examples</a></li>
-              <li><a href="#" className="hover:text-white">Career Blog</a></li>
-              <li><a href="#" className="hover:text-white">Interview Tips</a></li>
-              <li><a href="#" className="hover:text-white">Help Center</a></li>
-              <li><a href="#" className="hover:text-white">FAQ</a></li>
+              <li><Link to="#" className="hover:text-white">Resume Examples</Link></li>
+              <li><Link to="#" className="hover:text-white">Career Blog</Link></li>
+              <li><Link to="#" className="hover:text-white">Interview Tips</Link></li>
+              <li><Link to="#" className="hover:text-white">Help Center</Link></li>
+              <li><Link to="#" className="hover:text-white">FAQ</Link></li>
             </ul>
           </div>
 
@@ -143,11 +143,11 @@ export default function Footer() {
             </h3>
 
             <ul className="mt-6 space-y-4 text-gray-400">
-              <li><a href="#" className="hover:text-white">About</a></li>
-              <li><a href="#" className="hover:text-white">Careers</a></li>
-              <li><a href="#" className="hover:text-white">Partners</a></li>
-              <li><a href="#" className="hover:text-white">Privacy</a></li>
-              <li><a href="#" className="hover:text-white">Terms</a></li>
+              <li><Link to="#" className="hover:text-white">About</Link></li>
+              <li><Link to="#" className="hover:text-white">Careers</Link></li>
+              <li><Link to="#" className="hover:text-white">Partners</Link></li>
+              <li><Link to="#" className="hover:text-white">Privacy</Link></li>
+              <li><Link to="#" className="hover:text-white">Terms</Link></li>
             </ul>
           </div>
         </div>
