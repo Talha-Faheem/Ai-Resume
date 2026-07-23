@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { RiSparkling2Fill } from "react-icons/ri";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="text-white">
