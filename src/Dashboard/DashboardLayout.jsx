@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
-  FiGrid,
-  FiFileText,
-  FiTarget,
-  FiLayers,
-  FiMail,
-  FiSettings,
-  FiSearch,
   FiBell,
   FiChevronLeft,
   FiChevronRight,
+  FiFileText,
+  FiGrid,
+  FiLayers,
+  FiMail,
+  FiSearch,
+  FiSettings,
+  FiTarget,
 } from "react-icons/fi";
 import { RiSparkling2Fill } from "react-icons/ri";
+import { NavLink, Outlet } from "react-router-dom";
+import { useResume } from '../context/ResumeContext';
 
 const navItems = [
   { label: "Dashboard", icon: FiGrid, path: "/dashboard" },
@@ -24,7 +25,32 @@ const navItems = [
 ];
 
 export default function DashboardLayout() {
-  const [collapsed, setCollapsed] = useState(false);
+  const { state } = useResume();
+  const [collapsed, setCollapsed] = useState(true);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+
+    const handleScreenChange = (e) => {
+      if (e.matches) {
+        setCollapsed(false);
+      } else {
+        setCollapsed(true);
+      }
+    };
+
+    handleScreenChange(mediaQuery);
+    mediaQuery.addEventListener("change", handleScreenChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleScreenChange);
+    };
+  }, []);
+  
+  const creditsPct = state.user?.maxCredits 
+    ? Math.min(100, (state.user.aiCredits / state.user.maxCredits) * 100) 
+    : 0;
+  const userInitial = state.user?.name?.charAt(0) || 'A';
 
   return (
     <div className="flex h-screen bg-[#0B1120] text-white overflow-hidden">
@@ -32,7 +58,7 @@ export default function DashboardLayout() {
       <aside
         className={`${
           collapsed ? "w-20" : "w-64"
-        } min-h-screen bg-gradient-to-b from-[#332066] via-[#261C58] to-[#131A37] border-r border-white/10 flex flex-col transition-all duration-300 flex-shrink-0`}
+        }  min-h-screen bg-gradient-to-b from-[#332066] via-[#261C58] to-[#131A37] border-r border-white/10 flex flex-col transition-all duration-300 flex-shrink-0`}
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-5 h-16 border-b border-white/5">
@@ -80,13 +106,13 @@ export default function DashboardLayout() {
             {!collapsed && (
               <div className="flex justify-between text-xs mb-2">
                 <span className="text-gray-400">AI Credits</span>
-                <span className="text-violet-400 font-medium">142/200</span>
+                <span className="text-violet-400 font-medium">{state.user?.aiCredits || 0}/{state.user?.maxCredits || 200}</span>
               </div>
             )}
             <div className="w-full bg-white/10 rounded-full h-1.5">
               <div
-                className="bg-gradient-to-r from-violet-500 to-purple-500 h-1.5 rounded-full"
-                style={{ width: "71%" }}
+                className="bg-gradient-to-r from-violet-500 to-purple-500 h-1.5 rounded-full transition-all duration-300"
+                style={{ width: `${creditsPct}%` }}
               />
             </div>
           </div>
@@ -96,12 +122,12 @@ export default function DashboardLayout() {
         <div className="px-3 pb-3 border-t border-white/5 pt-3">
           <div className="flex items-center gap-3 px-2">
             <div className="w-9 h-9 rounded-full bg-violet-600 flex items-center justify-center text-sm font-bold flex-shrink-0">
-              A
+              {userInitial}
             </div>
             {!collapsed && (
               <div className="min-w-0">
-                <p className="text-sm font-medium truncate">Alex Johnson</p>
-                <p className="text-xs text-gray-500 truncate">Pro Plan</p>
+                <p className="text-sm font-medium truncate">{state.user?.name || 'Guest'}</p>
+                <p className="text-xs text-gray-500 truncate">{state.user?.plan || 'Free Plan'}</p>
               </div>
             )}
           </div>
@@ -144,7 +170,7 @@ export default function DashboardLayout() {
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-violet-500 rounded-full" />
             </button>
             <div className="w-9 h-9 rounded-full bg-violet-600 flex items-center justify-center text-sm font-bold cursor-pointer hover:ring-2 hover:ring-violet-400 transition">
-              A
+              {userInitial}
             </div>
           </div>
         </header>

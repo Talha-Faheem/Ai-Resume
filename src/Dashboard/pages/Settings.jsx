@@ -1,8 +1,58 @@
-import { FiUser, FiLock, FiBell, FiCreditCard, FiGlobe, FiTrash2 } from 'react-icons/fi'
+import React, { useState } from 'react';
+import { FiUser, FiLock, FiBell, FiCreditCard, FiGlobe, FiTrash2, FiCheck } from 'react-icons/fi';
+import { useResume } from '../../context/ResumeContext';
 
 export default function Settings() {
+  const { state, dispatch } = useResume();
+  const [toast, setToast] = useState('');
+
+  const showToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(''), 2000);
+  };
+
+  const handleUserChange = (field, value) => {
+    dispatch({
+      type: 'UPDATE_USER',
+      payload: { [field]: value }
+    });
+  };
+
+  const handleSettingsChange = (field, value) => {
+    dispatch({
+      type: 'UPDATE_SETTINGS',
+      payload: { [field]: value }
+    });
+  };
+
+  const toggleSetting = (field) => {
+    handleSettingsChange(field, !state.settings?.[field]);
+  };
+
+  const handleDeleteAccount = () => {
+    if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+      localStorage.clear();
+      window.location.reload();
+    }
+  };
+
+  const ToggleSwitch = ({ checked, onClick }) => (
+    <div 
+      onClick={onClick}
+      className={`w-10 h-5 rounded-full flex items-center px-0.5 cursor-pointer transition-colors ${checked ? 'bg-violet-600' : 'bg-white/10'}`}
+    >
+      <div className={`w-4 h-4 rounded-full bg-white transform transition-transform ${checked ? 'translate-x-5' : 'translate-x-0'}`}></div>
+    </div>
+  );
+
   return (
-    <div className="p-8">
+    <div className="p-8 relative">
+      {toast && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 flex items-center gap-2">
+          <FiCheck /> {toast}
+        </div>
+      )}
+
       <div>
         <h1 className="text-3xl font-bold text-white">Settings</h1>
         <p className="text-gray-400 mt-1">Manage your account and preferences</p>
@@ -12,16 +62,25 @@ export default function Settings() {
         
         {/* Profile */}
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-violet-500/30 transition">
-          <h2 className="font-semibold text-white flex items-center gap-3 mb-4">
-            <FiUser size={20} />
-            Profile
-          </h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="font-semibold text-white flex items-center gap-3">
+              <FiUser size={20} />
+              Profile
+            </h2>
+            <button 
+              onClick={() => showToast('Profile saved successfully!')}
+              className="bg-white/10 hover:bg-white/20 text-white text-sm px-3 py-1.5 rounded-lg transition"
+            >
+              Save
+            </button>
+          </div>
           <div className="space-y-4">
             <div>
               <label className="text-xs text-gray-500 font-semibold tracking-wider mb-2 block">NAME</label>
               <input
                 type="text"
-                defaultValue="Alex Johnson"
+                value={state.user?.name || ''}
+                onChange={(e) => handleUserChange('name', e.target.value)}
                 className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-violet-500 transition w-full"
               />
             </div>
@@ -29,7 +88,8 @@ export default function Settings() {
               <label className="text-xs text-gray-500 font-semibold tracking-wider mb-2 block">EMAIL</label>
               <input
                 type="email"
-                defaultValue="alex@email.com"
+                value={state.user?.email || ''}
+                onChange={(e) => handleUserChange('email', e.target.value)}
                 className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-violet-500 transition w-full"
               />
             </div>
@@ -53,9 +113,10 @@ export default function Settings() {
             </div>
             <div className="flex items-center justify-between mt-4">
               <span className="text-sm text-gray-300">Two-Factor Authentication</span>
-              <div className="w-10 h-5 rounded-full bg-violet-600 flex items-center px-0.5 cursor-pointer">
-                <div className="w-4 h-4 rounded-full bg-white transform translate-x-5 transition-transform"></div>
-              </div>
+              <ToggleSwitch 
+                checked={state.settings?.twoFactor || false} 
+                onClick={() => toggleSetting('twoFactor')} 
+              />
             </div>
           </div>
         </div>
@@ -69,15 +130,17 @@ export default function Settings() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-300">Email Notifications</span>
-              <div className="w-10 h-5 rounded-full bg-violet-600 flex items-center px-0.5 cursor-pointer">
-                <div className="w-4 h-4 rounded-full bg-white transform translate-x-5 transition-transform"></div>
-              </div>
+              <ToggleSwitch 
+                checked={state.settings?.emailNotifications || false} 
+                onClick={() => toggleSetting('emailNotifications')} 
+              />
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-300">Marketing Emails</span>
-              <div className="w-10 h-5 rounded-full bg-white/10 flex items-center px-0.5 cursor-pointer">
-                <div className="w-4 h-4 rounded-full bg-white transform transition-transform"></div>
-              </div>
+              <ToggleSwitch 
+                checked={state.settings?.marketingEmails || false} 
+                onClick={() => toggleSetting('marketingEmails')} 
+              />
             </div>
           </div>
         </div>
@@ -91,8 +154,8 @@ export default function Settings() {
           <div className="space-y-4">
             <div className="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/5">
               <div>
-                <p className="text-white font-medium">Pro Plan</p>
-                <p className="text-sm text-gray-400">$12/mo</p>
+                <p className="text-white font-medium capitalize">{(state.user?.plan || 'Free')} Plan</p>
+                <p className="text-sm text-gray-400">{state.user?.plan === 'pro' ? '$12/mo' : 'Free tier'}</p>
               </div>
               <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg text-sm transition">
                 Upgrade
@@ -110,7 +173,11 @@ export default function Settings() {
           <div className="space-y-4">
             <div>
               <label className="text-xs text-gray-500 font-semibold tracking-wider mb-2 block">SELECT LANGUAGE</label>
-              <select className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-violet-500 transition w-full appearance-none">
+              <select 
+                value={state.settings?.language || 'en'}
+                onChange={(e) => handleSettingsChange('language', e.target.value)}
+                className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-violet-500 transition w-full appearance-none"
+              >
                 <option value="en" className="bg-gray-800 text-white">English (US)</option>
                 <option value="es" className="bg-gray-800 text-white">Español</option>
                 <option value="fr" className="bg-gray-800 text-white">Français</option>
@@ -129,7 +196,10 @@ export default function Settings() {
             <p className="text-sm text-gray-400">
               Once you delete your account, there is no going back. Please be certain.
             </p>
-            <button className="bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 rounded-xl px-4 py-3 text-sm font-medium transition w-full">
+            <button 
+              onClick={handleDeleteAccount}
+              className="bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 rounded-xl px-4 py-3 text-sm font-medium transition w-full"
+            >
               Delete Account
             </button>
           </div>
@@ -137,5 +207,5 @@ export default function Settings() {
 
       </div>
     </div>
-  )
+  );
 }

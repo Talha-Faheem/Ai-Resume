@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiCheck } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
+import { useResume } from '../../context/ResumeContext';
 
 const templates = [
   { id: 1, name: 'Executive Pro', category: 'Corporate', uses: '12.4K', rating: 4.8, gradient: 'from-teal-600 to-cyan-700', isPro: false },
@@ -25,6 +27,8 @@ const tabs = ['All', 'Corporate', 'Engineering', 'Design', 'Marketing', 'Researc
 export default function Templates() {
   const [activeTab, setActiveTab] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const { state, dispatch, activeResume } = useResume();
+  const navigate = useNavigate();
 
   const filteredTemplates = templates.filter((template) => {
     const matchesTab = activeTab === 'All' || template.category === activeTab;
@@ -32,6 +36,11 @@ export default function Templates() {
                           template.category.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesTab && matchesSearch;
   });
+
+  const handleUseTemplate = (templateName) => {
+    dispatch({ type: 'SELECT_TEMPLATE', payload: templateName });
+    navigate('/dashboard/resume-builder');
+  };
 
   return (
     <div className="w-full">
@@ -103,10 +112,22 @@ export default function Templates() {
                 </div>
               )}
 
+              {activeResume?.template === template.name && (
+                <div className="absolute top-3 left-3 bg-green-500 rounded-full p-1 text-white z-10">
+                  <FiCheck size={14} />
+                </div>
+              )}
+
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <button className="bg-white text-gray-900 font-medium px-5 py-2 rounded-lg text-sm hover:bg-gray-100 transition">
-                  Preview
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleUseTemplate(template.name);
+                  }}
+                  className="bg-white text-gray-900 font-medium px-5 py-2 rounded-lg text-sm hover:bg-gray-100 transition"
+                >
+                  Use Template
                 </button>
               </div>
             </div>

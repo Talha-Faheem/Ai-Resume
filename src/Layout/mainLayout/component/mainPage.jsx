@@ -1,6 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
 import { FaGripfire } from "react-icons/fa6";
 import { IoPlayOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import MainImage from "../../../assets/image.png";
 function mainPage() {
   return (
@@ -25,12 +26,12 @@ function mainPage() {
       </div>
 
       <div className="text-white lg:w-full  flex gap-4 flex-col md:flex-row lg:flex-col xl:flex-row w-full">
-        <button className="bg-blue-700 rounded-2xl text-white p-4 text-sm lg:text-lg font-semibold flex gap-2 justify-center items-center ">
-          <p>Bulid My Resume Free</p> <FaArrowRight />{" "}
-        </button>
-        <button className="border rounded-2xl text-white p-4 text-sm  lg:text-lg font-semibold flex gap-2 justify-center items-center ">
-          <p>See Live Demo</p> <IoPlayOutline className="text-2xl" />{" "}
-        </button>
+        <Link to="/dashboard" className="bg-blue-700 rounded-2xl text-white p-4 text-sm lg:text-lg font-semibold flex gap-2 justify-center items-center ">
+          <p>Build My Resume Free</p> <FaArrowRight />
+        </Link>
+        <Link to="/dashboard" className="border rounded-2xl text-white p-4 text-sm  lg:text-lg font-semibold flex gap-2 justify-center items-center ">
+          <p>See Live Demo</p> <IoPlayOutline className="text-2xl" />
+        </Link>
       </div>
       </div>
       <img className="w-full lg:w-[45%] sm:w-full max-w-230  h-auto" src={MainImage} alt="" />

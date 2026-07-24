@@ -1,5 +1,6 @@
 import { MdFormatListBulleted } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/react.svg";
 import Button from "../Ui/button";
 function mainHeader({ setMenu, showMenu }) {
@@ -24,8 +25,10 @@ function mainHeader({ setMenu, showMenu }) {
         </li>
       </div>
       <div className=" hidden md:flex items-center gap-3  ">
-        <button className="hover:text-white">Sign in</button>
-        <Button name="Get Started " />
+        <Link to="/login" className="hover:text-white">Sign in</Link>
+        <Link to="/dashboard">
+          <Button name="Get Started " />
+        </Link>
       </div>
       <div className="md:hidden flex justify-center items-center">
         <div onClick={() => setMenu((e)=>!e)}>

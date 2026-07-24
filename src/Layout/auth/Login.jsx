@@ -8,9 +8,11 @@ import {
     FaGoogle,
 } from "react-icons/fa6";
 import { HiCheckCircle } from "react-icons/hi2";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <section className="h-100vh bg-[#0B1120] text-white grid lg:grid-cols-2">
@@ -58,7 +60,7 @@ export default function Login() {
       <div className="flex items-center justify-center px-6 py-6">
         <div className="w-full max-w-md">
           {/* Back */}
-          <button className="flex items-center gap-2 text-slate-400 hover:text-white transition">
+          <button onClick={() => navigate('/')} className="flex items-center gap-2 text-slate-400 hover:text-white transition">
             <FaArrowLeft className="text-sm" />
             <span className="text-sm">Back to Home</span>
           </button>
@@ -146,7 +148,7 @@ export default function Login() {
           </div>
 
           {/* Login Button */}
-          <button className="mt-8 w-full h-12 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 hover:scale-[1.02] transition flex items-center justify-center gap-2 font-medium">
+          <button onClick={() => navigate('/dashboard')} className="mt-8 w-full h-12 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 hover:scale-[1.02] transition flex items-center justify-center gap-2 font-medium">
             Sign In
             <FaArrowRight className="text-sm" />
           </button>
